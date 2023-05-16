@@ -1,0 +1,101 @@
+<html>
+
+<meta charset="UTF-8">
+
+<style>
+  body {
+    padding: 20px;
+    min-width: 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .toggle_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #toggle_box {
+    display: none;
+  }
+
+  .toggleWrap {
+    width: 65px;
+    height: 30px;
+    padding: 2px;
+    border: 1px solid grey;
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    position: relative;
+    transition: all 0.4s;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .toggleDot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: grey;
+    position: absolute;
+    transition: all 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .toggle_container span {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .toggleSelected .toggleWrap{
+    background-color: lawngreen;
+  }
+
+  .toggleSelected .toggleDot {
+    background-color: white;
+    transform: translateX(35px);
+  }
+
+  .footer {
+    padding-top: 8px;
+    text-align: center;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 22px;
+    padding-bottom: 10px;
+  }
+
+
+</style>
+
+<body>
+  <div class="title">
+    satStats
+  </div>
+  <div class="toggle_container">
+    <span>OFF</span>
+    <input type="checkbox" id="toggle_box" checked />
+    <div class="toggleWrap">
+      <div class="toggleDot"></div>
+    </div>
+    <span>ON</span>
+  </div>
+  <div class="footer">
+    by <a href="https://twitter.com/RabbiGains" target="_blank">@RabbiGains</a>
+  </div>
+  <div class="update-alert">
+  </div>
+</body>
+
+<script src="scripts/popup.js"></script>
+
+</html>

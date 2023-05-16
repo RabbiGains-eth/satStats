@@ -1,5 +1,5 @@
 # satStats
-  View an satoshi stats for any Ordinal inscriptions, across all major marketplaces.
+  View satoshi stats for any Ordinal inscriptions, across all major marketplaces.
   
  
 

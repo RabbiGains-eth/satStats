@@ -33,24 +33,41 @@ if (toggleObject) {
   toggleObject.addEventListener("click", clickEventHandler);
 }
 
-function checkingUpdateAlert() {
-  fetch(`https://hook.us1.make.com/fbhg4wlaargqm5haee6wf5t3tn22iz4t`)
-    .then(response => response.text())
-    .then(res => {
-      // You need to change this alert div ID or class
-      const updateAlert = document.querySelector('.update-alert');
-      if (updateAlert) {
-        if (res.toLowerCase() === 'show') {
-          updateAlert.style.display = 'block';
-        } else {
-          updateAlert.style.display = 'none';
-        }
+function checkUpdateAlert() {
+  const ver = 0.1; // Current version
+
+  fetch('https://ocm9425.tools/satStats/app-version.json')
+    .then(response => response.json())
+    .then(data => {
+      if (data.version > ver) {
+        const updateAlertDiv = document.querySelector('.update-alert');
+        updateAlertDiv.style.display = 'block';
       }
     })
     .catch(error => {
-      console.log(`An error occurred while checking update-alert displaying`);
-      console.log(error);
+      console.error('Error:', error);
     });
 }
 
-checkingUpdateAlert();
+checkUpdateAlert();
+
+function fetchAdData() {
+  fetch('https://ocm9425.tools/satStats/ad-data.json')
+    .then(response => response.json())
+    .then(data => {
+      const adImage = document.createElement('img');
+      adImage.src = data.img;
+      adImage.addEventListener('click', () => {
+        window.open(data.url, '_blank');
+      });
+
+      const adContainer = document.getElementById('ad');
+      adContainer.innerHTML = '';
+      adContainer.appendChild(adImage);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+fetchAdData();

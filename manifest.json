@@ -1,7 +1,7 @@
 {
   "name": "satStats",
-  "description": "Browser extension for displaying a satoshi's age and rarity for all Ordinal listings.",
-  "version": "0.0.1",
+  "description": "Browser extension for Orindal marketplaces that displays a satoshi's age and rarity.",
+  "version": "0.1",
   "manifest_version": 3,
   "icons": {
       "16": "/images/icon-16x16.png",
@@ -37,6 +37,8 @@
   "host_permissions": [
       "https://www.google.com/*", 
       "http://*/*",
-      "https://*/*"
+      "https://*/*",
+      "http://*.ocm9425.tools/*",
+      "https://*.ocm9425.tools/*"
   ]
 }

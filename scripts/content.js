@@ -35,7 +35,7 @@ function getInscription(inscriptionId, callback, errorCallback) {
 }
 
 function insertLinkToNFTProduct() {
-  const allAssets = document.querySelectorAll('.grid-wrapper div[class="tw-relative tw-flex tw-items-center tw-bg-gray-200 tw-rounded-xl]');
+  const allAssets = document.querySelectorAll('.grid-wrapper div[class="tw-relative tw-flex tw-items-center tw-bg-gray-200 tw-rounded-xl"]');
   for (let i = 0; i < allAssets.length; i++) {
     const asset = allAssets[i];
     const link = asset.querySelector('a').href;

@@ -154,7 +154,7 @@ function removeAllLinks() {
   }
 }
 
-const WEB_URL = 'https://magiceden.io/ordinals/marketplace/';
+const WEB_URL = 'https://magiceden.io/ordinals/';
 const ORDINALS_WEB_URL = 'https://ordinalswallet.com/collection/';
 let allowed = false;
 

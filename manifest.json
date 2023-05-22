@@ -1,7 +1,7 @@
 {
   "name": "satStats",
   "description": "Browser extension for Orindal marketplaces that displays a satoshi's age and rarity.",
-  "version": "0.1",
+  "version": "0.2",
   "manifest_version": 3,
   "icons": {
       "16": "/images/icon-16x16.png",

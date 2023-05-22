@@ -34,7 +34,7 @@ if (toggleObject) {
 }
 
 function checkUpdateAlert() {
-  const ver = 0.1; // Current version
+  const ver = 0.2; // Current version
 
   fetch('https://ocm9425.tools/satStats/app-version.json')
     .then(response => response.json())

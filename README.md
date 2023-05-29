@@ -2,8 +2,8 @@
   View satoshi stats for any Ordinal inscriptions, across all major marketplaces.
 
 
-## Update May 21, 2023 v0.2
-  - Hot fix for MagicEden marketplace. 
+## Update May 29, 2023 v0.4
+  - Support added for Gamma and Ord.io
  
 
 

@@ -34,8 +34,8 @@ function getInscription(inscriptionId, callback, errorCallback) {
     });
 }
 
-function insertLinkToNFTProduct() {
-  const allAssets = document.querySelectorAll('.grid-wrapper div[class="tw-relative tw-flex tw-items-center tw-bg-gray-200 tw-rounded-xl"]');
+function insertToMagicEden() {
+  const allAssets = document.querySelectorAll('.grid-wrapper div[class="tw-h-full tw-rounded-xl tw-border-gray-4 tw-border-[1px] tw-bg-gray-100 tw-pb-1 tw-border-gray-4"]');
   for (let i = 0; i < allAssets.length; i++) {
     const asset = allAssets[i];
     const link = asset.querySelector('a').href;
@@ -71,25 +71,76 @@ function insertLinkToNFTProduct() {
           const date = new Date(timestamp * 1000);
           allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'inline-block';
           allAssets[i].querySelector('.rarity-link .sat_rarity_value').innerHTML = res.sat_rarity;
-          allAssets[i].querySelector('.date-link .month_value').innerHTML = ('0' + (date.getMonth() * 1 + 1)).slice(-2) + '/';
-          allAssets[i].querySelector('.date-link .year_value').innerHTML = '&nbsp' + date.getFullYear();
+          if (res.sat_rarity !== 'common') {
+            allAssets[i].querySelector('.rarity-link').style.backgroundColor = 'red';
+            allAssets[i].querySelector('.rarity-link span').style.color = 'white';
+          } else {
+            allAssets[i].querySelector('.rarity-link').style.backgroundColor = 'white';
+            allAssets[i].querySelector('.rarity-link span').style.color = 'black';
+          }
+          allAssets[i].querySelector('.date-link .month_value').innerHTML = ('0' + (date.getMonth() * 1 + 1)).slice(-2);
+          allAssets[i].querySelector('.date-link .year_value').innerHTML = '/' + date.getFullYear();
+          allAssets[i].querySelector('.date-link').href = 'https://ordinals.com/sat/' + res.sat_ordinal;
+          allAssets[i].querySelector('.rarity-link').href = 'https://ordinals.com/sat/' + res.sat_ordinal;
+
+          if (!res.sat_ordinal) {
+            allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+            });
+            allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+            });
+          } else {
+            allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              window.open(this.href, '_blank');
+            });
+            allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              window.open(this.href, '_blank');
+            });
+          }
         }, function () {
           allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'none';
           allAssets[i].querySelector('.rarity-link .sat_rarity_value').innerHTML = '';
           allAssets[i].querySelector('.date-link .month_value').innerHTML = '';
           allAssets[i].querySelector('.date-link .year_value').innerHTML = '';
+          allAssets[i].querySelector('.date-link').href = '';
+          allAssets[i].querySelector('.rarity-link').href = '';
+          allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          });
+          allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          });
         })
       }, function () {
         allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'none';
         allAssets[i].querySelector('.rarity-link .sat_rarity_value').innerHTML = '';
         allAssets[i].querySelector('.date-link .month_value').innerHTML = '';
         allAssets[i].querySelector('.date-link .year_value').innerHTML = '';
+        allAssets[i].querySelector('.date-link').href = '';
+        allAssets[i].querySelector('.rarity-link').href = '';
+        allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        });
+        allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        });
       });
     }
   }
 }
 
-function insertLinkToOrdinalNFTProduct() {
+function insertToOrdinalsWallet() {
   const allAssets = document.querySelectorAll('.infinite-scroll-component div[class^="InscriptionCard_root"]');
   for (let i = 0; i < allAssets.length; i++) {
     const asset = allAssets[i];
@@ -126,19 +177,285 @@ function insertLinkToOrdinalNFTProduct() {
           const date = new Date(timestamp * 1000);
           allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'inline-block';
           allAssets[i].querySelector('.rarity-link .sat_rarity_value').innerHTML = res.sat_rarity;
+          if (res.sat_rarity !== 'common') {
+            allAssets[i].querySelector('.rarity-link').style.backgroundColor = 'red';
+            allAssets[i].querySelector('.rarity-link span').style.color = 'white';
+          } else {
+            allAssets[i].querySelector('.rarity-link').style.backgroundColor = 'white';
+            allAssets[i].querySelector('.rarity-link span').style.color = 'black';
+          }
           allAssets[i].querySelector('.date-link .month_value').innerHTML = ('0' + (date.getMonth() * 1 + 1)).slice(-2);
           allAssets[i].querySelector('.date-link .year_value').innerHTML = '/' + date.getFullYear();
+          allAssets[i].querySelector('.date-link').href = 'https://ordinals.com/sat/' + res.sat_ordinal;
+          allAssets[i].querySelector('.rarity-link').href = 'https://ordinals.com/sat/' + res.sat_ordinal;
+
+          if (!res.sat_ordinal) {
+            allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+            });
+            allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+            });
+          } else {
+            allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              window.open(this.href, '_blank');
+            });
+            allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              window.open(this.href, '_blank');
+            });
+          }
         }, function () {
           allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'none';
           allAssets[i].querySelector('.rarity-link .sat_rarity_value').innerHTML = '';
           allAssets[i].querySelector('.date-link .month_value').innerHTML = '';
           allAssets[i].querySelector('.date-link .year_value').innerHTML = '';
+          allAssets[i].querySelector('.date-link').href = '';
+          allAssets[i].querySelector('.rarity-link').href = '';
+          
+          allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          });
+          allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          });
         })
       }, function () {
         allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'none';
         allAssets[i].querySelector('.rarity-link .sat_rarity_value').innerHTML = '';
         allAssets[i].querySelector('.date-link .month_value').innerHTML = '';
         allAssets[i].querySelector('.date-link .year_value').innerHTML = '';
+        allAssets[i].querySelector('.date-link').href = '';
+        allAssets[i].querySelector('.rarity-link').href = '';
+        
+        allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        });
+        allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        });
+      });
+    }
+  }
+}
+
+function insertToOrdIO() {
+  const allAssets = document.querySelectorAll('.feed-cols a[class=""]');
+  for (let i = 0; i < allAssets.length; i++) {
+    const asset = allAssets[i];
+    const link = asset.href;
+    const splitedLink = link.split('/');
+    const token = splitedLink[splitedLink.length - 1];
+    const imageElem = asset.querySelector('.bg-dark-card div.relative.aspect-square');
+    const isDateExist = imageElem.querySelector('.date-row');
+    if (!isDateExist) {
+      const iconRow = document.createElement("div");
+      iconRow.className = 'date-row';
+      iconRow.innerHTML = `
+        <a class="date-link">
+          <span class="month_value"></span>
+          <span class="year_value"></span>
+        </a>
+        <a class="rarity-link">
+          <span class="sat_rarity_value"></span>
+        </a>
+      `;
+      imageElem.insertBefore(iconRow, imageElem.firstChild)
+      // imageElem.querySelector('.date-row .date-link').addEventListener('click', function (e) {
+      //   e.preventDefault();
+      //   e.stopPropagation();
+      // });
+      // imageElem.querySelector('.date-row .rarity-link').addEventListener('click', function (e) {
+      //   e.preventDefault();
+      //   e.stopPropagation();
+      // });
+      allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'none';
+      getInscription(token, function (res) {
+        getBlockHeight(res.sat_coinbase_height, function (block_res) {
+          const timestamp = block_res.blocks[0].time;
+          const date = new Date(timestamp * 1000);
+          allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'inline-block';
+          allAssets[i].querySelector('.rarity-link .sat_rarity_value').innerHTML = res.sat_rarity;
+          if (res.sat_rarity !== 'common') {
+            allAssets[i].querySelector('.rarity-link').style.backgroundColor = 'red';
+            allAssets[i].querySelector('.rarity-link span').style.color = 'white';
+          } else {
+            allAssets[i].querySelector('.rarity-link').style.backgroundColor = 'white';
+            allAssets[i].querySelector('.rarity-link span').style.color = 'black';
+          }
+          allAssets[i].querySelector('.date-link .month_value').innerHTML = ('0' + (date.getMonth() * 1 + 1)).slice(-2);
+          allAssets[i].querySelector('.date-link .year_value').innerHTML = '/' + date.getFullYear();
+          allAssets[i].querySelector('.date-link').href = 'https://ordinals.com/sat/' + res.sat_ordinal;
+          allAssets[i].querySelector('.rarity-link').href = 'https://ordinals.com/sat/' + res.sat_ordinal;
+
+          if (!res.sat_ordinal) {
+            allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+            });
+            allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+            });
+          } else {
+            allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              window.open(this.href, '_blank');
+            });
+            allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              window.open(this.href, '_blank');
+            });
+          }
+        }, function () {
+          allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'none';
+          allAssets[i].querySelector('.rarity-link .sat_rarity_value').innerHTML = '';
+          allAssets[i].querySelector('.date-link .month_value').innerHTML = '';
+          allAssets[i].querySelector('.date-link .year_value').innerHTML = '';
+          allAssets[i].querySelector('.date-link').href = '';
+          allAssets[i].querySelector('.rarity-link').href = '';
+          
+          allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          });
+          allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          });
+        })
+      }, function () {
+        allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'none';
+        allAssets[i].querySelector('.rarity-link .sat_rarity_value').innerHTML = '';
+        allAssets[i].querySelector('.date-link .month_value').innerHTML = '';
+        allAssets[i].querySelector('.date-link .year_value').innerHTML = '';
+        allAssets[i].querySelector('.date-link').href = '';
+        allAssets[i].querySelector('.rarity-link').href = '';
+        allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        });
+        allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        });
+      });
+    }
+  }
+}
+
+function insertToGamma() {
+  const allAssets = document.querySelectorAll('.content-start .card-bg');
+  for (let i = 0; i < allAssets.length; i++) {
+    const asset = allAssets[i];
+    const link = asset.querySelector('a').href;
+    const splitedLink = link.split('/');
+    const token = splitedLink[splitedLink.length - 1];
+    const imageElem = asset.querySelector('a .aspect-square .relative');
+    const isDateExist = imageElem.querySelector('.date-row');
+    if (!isDateExist) {
+      const iconRow = document.createElement("div");
+      iconRow.className = 'date-row';
+      iconRow.innerHTML = `
+        <a class="date-link">
+          <span class="month_value"></span>
+          <span class="year_value"></span>
+        </a>
+        <a class="rarity-link">
+          <span class="sat_rarity_value"></span>
+        </a>
+      `;
+      imageElem.insertBefore(iconRow, imageElem.firstChild)
+      imageElem.querySelector('.date-row .date-link').addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+      imageElem.querySelector('.date-row .rarity-link').addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+      allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'none';
+      getInscription(token, function (res) {
+        getBlockHeight(res.sat_coinbase_height, function (block_res) {
+          const timestamp = block_res.blocks[0].time;
+          const date = new Date(timestamp * 1000);
+          allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'inline-block';
+          allAssets[i].querySelector('.rarity-link .sat_rarity_value').innerHTML = res.sat_rarity;
+          if (res.sat_rarity !== 'common') {
+            allAssets[i].querySelector('.rarity-link').style.backgroundColor = 'red';
+            allAssets[i].querySelector('.rarity-link span').style.color = 'white';
+          } else {
+            allAssets[i].querySelector('.rarity-link').style.backgroundColor = 'white';
+            allAssets[i].querySelector('.rarity-link span').style.color = 'black';
+          }
+          allAssets[i].querySelector('.date-link .month_value').innerHTML = ('0' + (date.getMonth() * 1 + 1)).slice(-2);
+          allAssets[i].querySelector('.date-link .year_value').innerHTML = '/' + date.getFullYear();
+          allAssets[i].querySelector('.date-link').href = 'https://ordinals.com/sat/' + res.sat_ordinal;
+          allAssets[i].querySelector('.rarity-link').href = 'https://ordinals.com/sat/' + res.sat_ordinal;
+
+          if (!res.sat_ordinal) {
+            allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+            });
+            allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+            });
+          } else {
+            allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              window.open(this.href, '_blank');
+            });
+            allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              window.open(this.href, '_blank');
+            });
+          }
+        }, function () {
+          allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'none';
+          allAssets[i].querySelector('.rarity-link .sat_rarity_value').innerHTML = '';
+          allAssets[i].querySelector('.date-link .month_value').innerHTML = '';
+          allAssets[i].querySelector('.date-link .year_value').innerHTML = '';
+          allAssets[i].querySelector('.date-link').href = '';
+          allAssets[i].querySelector('.rarity-link').href = '';
+          allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          });
+          allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          });
+        })
+      }, function () {
+        allAssets[i].querySelector('.rarity-link .sat_rarity_value').style.display = 'none';
+        allAssets[i].querySelector('.rarity-link .sat_rarity_value').innerHTML = '';
+        allAssets[i].querySelector('.date-link .month_value').innerHTML = '';
+        allAssets[i].querySelector('.date-link .year_value').innerHTML = '';
+        allAssets[i].querySelector('.date-link').href = '';
+        allAssets[i].querySelector('.rarity-link').href = '';
+        allAssets[i].querySelector('.date-link').addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        });
+        allAssets[i].querySelector('.rarity-link').addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        });
       });
     }
   }
@@ -155,28 +472,48 @@ function removeAllLinks() {
 }
 
 const WEB_URL = 'https://magiceden.io/ordinals/';
-const ORDINALS_WEB_URL = 'https://ordinalswallet.com/collection/';
+const ORDINALS_WEB_URL = 'https://ordinalswallet.com/';
+const ORDIO_WEB_URL = 'https://www.ord.io';
+const GAMMA_WEB_URL = 'https://gamma.io/ordinals/';
 let allowed = false;
 
-chrome.runtime.onMessage.addListener(
+chrome.runtime.onMessage.addListener(         
   function (request, sender, sendResponse) {
     if (request.message === "allowed") {
       if (request.selected && window.location.href.indexOf(WEB_URL) > -1) {
         allowed = true;
-        insertLinkToNFTProduct();
+        insertToMagicEden();
 
         window.addEventListener("wheel", event => {
           if (window.location.href.indexOf(WEB_URL) > -1 && allowed) {
-            insertLinkToNFTProduct();
+            insertToMagicEden();
           }
         });
       } else if (request.selected && window.location.href.indexOf(ORDINALS_WEB_URL) > -1) {
         allowed = true;
-        insertLinkToOrdinalNFTProduct();
+        insertToOrdinalsWallet();
 
         window.addEventListener("wheel", event => {
           if (window.location.href.indexOf(ORDINALS_WEB_URL) > -1 && allowed) {
-            insertLinkToOrdinalNFTProduct();
+            insertToOrdinalsWallet();
+          }
+        });
+      } else if (request.selected && window.location.href.indexOf(ORDIO_WEB_URL) > -1) {
+        allowed = true;
+        insertToOrdIO();
+
+        window.addEventListener("wheel", event => {
+          if (window.location.href.indexOf(ORDIO_WEB_URL) > -1 && allowed) {
+            insertToOrdIO();
+          }
+        });
+      } else if (request.selected && window.location.href.indexOf(GAMMA_WEB_URL) > -1) {
+        allowed = true;
+        insertToGamma();
+
+        window.addEventListener("wheel", event => {
+          if (window.location.href.indexOf(GAMMA_WEB_URL) > -1 && allowed) {
+            insertToGamma();
           }
         });
       } else {
@@ -189,13 +526,13 @@ chrome.runtime.onMessage.addListener(
 
 let previousUrl = '';
 const observer = new MutationObserver(function (mutations) {
-  if (window.location.href.indexOf(WEB_URL) > -1 || window.location.href.indexOf(ORDINALS_WEB_URL) > -1) {
+  if (window.location.href.indexOf(WEB_URL) > -1 || window.location.href.indexOf(ORDINALS_WEB_URL) > -1 || window.location.href.indexOf(ORDIO_WEB_URL) > -1 || window.location.href.indexOf(GAMMA_WEB_URL) > -1) {
     if (location.href !== previousUrl) {
       previousUrl = location.href;
       console.log(`URL changed to ${location.href}`);
       setTimeout(() => {
         chrome.runtime.sendMessage({ "localstorage": "isAllowed" });
-      }, 2000);
+      }, 4500);
     }
   }
 });

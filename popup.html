@@ -1,6 +1,6 @@
 <html>
 
-<meta charset="UTF-8">
+<meta charset="UTF-8" http-equiv="Content-Security-Policy">
 
 <style>
   body {
@@ -10,6 +10,22 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    color: rgb(255, 255, 255);
+    background: #0b5fdd;
+    /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #202030 1%, #39304A 60%, #f7931a 79%, #202030 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #202030 1%, #39304A 60%, #f7931a 79%, #202030 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #202030 1%, #39304A 60%, #f7931a 79%, #202030 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#202030', endColorstr='#39304A', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+    box-shadow: 0px 5px 20px rgba(50, 50, 50, .5);
+  }
+
+  a {
+    color:white;
   }
 
   .toggle_container {
@@ -35,6 +51,10 @@
     transition: all 0.4s;
     margin-left: 10px;
     margin-right: 10px;
+  }
+
+  .toggleSelected .toggleWrap {
+    background-color: #f09335!important;
   }
 
   .toggleDot {
@@ -73,11 +93,55 @@
     text-align: center;
   }
 
+  .gasStats {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .etaBlock {
+    font-size: 16px;
+    padding-top: 5px;
+    text-align: center;
+  }
+
+  .refreshLinkDiv {
+    padding-top: 5px;
+    color: white;
+    text-align: center;
+  }
+
+  .refreshButton {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #f7931a;
+    background-color: #00000000;
+    font-size: 14px;
+    letter-spacing: 0.16px;
+    color: #f7931a;
+    font-weight: 400;
+    text-align: center;
+    width: 100%;
+  }
+
+  .refreshButton:hover {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #202030;
+    background-color: #00000000;
+    font-size: 14px;
+    letter-spacing: 0.16px;
+    color: #202030;
+    font-weight: 400;
+    text-align: center;
+    width: 100%;
+  }
+
   .update-alert {
     padding-top: 25px;
     text-align: center;
-    color: red;
-    display: none;
+    color: #54d14b;
 
   }
 
@@ -87,12 +151,78 @@
     padding-bottom: 10px;
   }
 
+  input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  .tabs {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
+    padding-top: 15px;
+  }
+
+  .tab {
+    width: 100%;
+    color: white;
+    overflow: hidden;
+  }
+  .tab-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    background: #f7931a;
+    font-weight: bold;
+    cursor: pointer;
+    /* Icon */
+  }
+  .tab-label:hover {
+    background: #202030;
+  }
+  .tab-label::after {
+    content: "❯";
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    transition: all 0.35s;
+  }
+  .tab-content {
+    max-height: 0;
+    padding: 0 1em;
+    color: #2c3e50;
+    background: white;
+    transition: all 0.35s;
+  }
+  .tab-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    font-size: 0.75em;
+    background: #202030;
+    cursor: pointer;
+  }
+  .tab-close:hover {
+    background: #f7931a;
+  }
+
+  input:checked + .tab-label {
+    background: #202030;
+  }
+  input:checked + .tab-label::after {
+    transform: rotate(90deg);
+  }
+  input:checked ~ .tab-content {
+    max-height: 100vh;
+    padding: 1em;
+  }
 
 </style>
 
 <body>
   <div class="title">
-    satStats
+    <img src="images/logo.png" width="250px">
   </div>
   <div class="toggle_container">
     <span>OFF</span>
@@ -103,16 +233,29 @@
     <span>ON</span>
   </div>
 
+  <div class="tabs">
+      <div class="tab">
+        <input type="checkbox" id="chck1">
+        <label class="tab-label" for="chck1">Gas Stats & Block ETA</label>
+        <div class="tab-content">
+          <div class="etaBlock" id="etaBlock"></div>
+          <div class="gasStats" id="gasStats"></div>
+          <button id="refreshLink" class="refreshButton">Refresh</button>
+        </div>
+      </div>
+    </div>
+  </body>
+
   <div class="footer">
-    by <a href="https://twitter.com/RabbiGains" target="_blank">@RabbiGains</a>
-  </div>
-  
-  <div class="ad" id="ad">
+    <a href="https://satstats.pro/?src=v01" target="_blank"><strong>www.satStats.pro</strong></a>
   </div>
 
+  <div class="ad" id="ad"></div>
+
   <div class="update-alert">
-        A new update has been released. Download the newest version from <a href="https://github.com/RabbiGains-eth/satStats" target="_blank">GitHub.</a>
+        A new update has been released. Download the newest version from <a href="https://github.com/RabbiGains-eth/satStats" target="_blank">GitHub</a> or <a href="https://chrome.google.com/webstore/detail/satstats/onbiefmmngdpknejohhcpaeidieakejl" target="_blank">Chrome Store</a> 
   </div>
+
 </body>
 
 <script src="scripts/popup.js"></script>

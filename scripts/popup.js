@@ -34,14 +34,16 @@ if (toggleObject) {
 }
 
 function checkUpdateAlert() {
-  const ver = 0.2; // Current version
+  const ver = 0.4; // Current version
 
   fetch('https://ocm9425.tools/satStats/app-version.json')
     .then(response => response.json())
     .then(data => {
-      if (data.version > ver) {
+      if (data.version < ver) {
         const updateAlertDiv = document.querySelector('.update-alert');
-        updateAlertDiv.style.display = 'block';
+        if (updateAlertDiv) {
+          updateAlertDiv.style.display = 'none';
+        }
       }
     })
     .catch(error => {
@@ -71,3 +73,49 @@ function fetchAdData() {
 }
 
 fetchAdData();
+
+function fetchGasStats() {
+  fetch('https://mempool.space/api/v1/fees/recommended')
+    .then(response => response.json())
+    .then(data => {
+        const fastestFee = data.fastestFee;
+        const halfHourFee = data.halfHourFee;
+        const hourFee = data.hourFee;
+        const gasStatsDiv = document.getElementById('gasStats');
+        gasStatsDiv.innerHTML = `Fastest Fee: <strong>${fastestFee} s/vB</strong><br>Half Hour Fee: <strong>${halfHourFee} s/vB</strong><br>Hour Fee: <strong>${hourFee} s/vB</strong>`;
+    })
+  .catch(error => {
+      console.log('Error:', error);
+  });
+
+  fetch('https://blockchain.info/q/eta')
+  .then(response => response.text())
+  .then(text => {
+    const seconds = parseInt(text);
+    let formattedTime;
+    if (seconds >= 120) {
+      const etaBlock = document.getElementById('etaBlock');
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = seconds % 60;
+      formattedTime = `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+    } else {
+      formattedTime = seconds.toFixed(1);
+    }
+    if (seconds < 0) {
+      etaBlock.innerHTML = `Block Overdue: ${formattedTime}s`;
+    } else {
+      if (seconds >= 120) {
+        etaBlock.innerHTML = `Next Block ETA: ${formattedTime}`;
+      } else {
+        etaBlock.innerHTML = `Next Block ETA: ${formattedTime}s`;
+      }
+    } 
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+fetchGasStats();
+
+document.getElementById('refreshLink').addEventListener('click', fetchGasStats);

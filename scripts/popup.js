@@ -34,7 +34,7 @@ if (toggleObject) {
 }
 
 function checkUpdateAlert() {
-  const ver = 0.4; // Current version
+  const ver = 0.5; // Current version
 
   fetch('https://ocm9425.tools/satStats/app-version.json')
     .then(response => response.json())
@@ -119,3 +119,60 @@ function fetchGasStats() {
 fetchGasStats();
 
 document.getElementById('refreshLink').addEventListener('click', fetchGasStats);
+
+function getRarity(url) {
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => data)
+    .catch(error => console.error('Error:', error));
+}
+
+function getRarity(url) {
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => data)
+    .catch(error => console.error('Error:', error));
+}
+
+document.getElementById('scanButton').addEventListener('click', function() {
+  const userAddress = document.getElementById('userAddress').value;
+  const apiUrl = `https://gw.sating.io/api/sats/mainnet/address_details/${userAddress}`;
+
+  const loadingDiv = document.getElementById('loading');
+  loadingDiv.innerHTML = 'Scanning...';
+
+  getRarity(apiUrl)
+    .then(response => {
+      const rarityResponseDiv = document.getElementById('rarityResponse');
+      const storyResponseDiv = document.getElementById('storyResponse');
+      const learnMoreDiv = document.getElementById('learnMore');
+      rarityResponseDiv.innerHTML = `
+        Uncommon: ${response.sats.rarity.uncommon.length}<br>
+        Rare: ${response.sats.rarity.rare.length}<br>
+        Epic: ${response.sats.rarity.epic.length}<br>
+        Legendary: ${response.sats.rarity.legendary.length}<br>
+        Mythic: ${response.sats.rarity.mythic.length}
+      `;
+      storyResponseDiv.innerHTML = `
+        Pizza: ${response.sats.interesting.ord_pizza[0].list.length || 0}<br>
+        Vintage: ${response.sats.interesting.ord_vintage[0].list.length || 0}<br>
+        First Transaction: ${response.sats.interesting.ord_first_transaction[0].list.length || 0}<br>
+        Palindromes Name: ${response.sats.interesting.ord_palindromes_name[0].list.length || 0}<br>
+        Palindromes Numer: ${response.sats.interesting.ord_palindromes_integer[0].list.length || 0}
+      `;
+      learnMoreDiv.innerHTML = `
+        Transfer and inscribe on your rare sats with one click at <a href='https://sating.io' target='_blank'>sating.io</a>
+        <br>
+      `;
+
+      const displayedValues = rarityResponseDiv.querySelectorAll('span, div');
+      displayedValues.forEach(element => {
+        if (element.innerHTML.trim() === '[]') {
+          element.innerHTML = '0';
+        }
+      });
+
+      loadingDiv.innerHTML = '';
+    })
+    .catch(error => console.error('Error:', error));
+});

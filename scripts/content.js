@@ -35,7 +35,7 @@ function getInscription(inscriptionId, callback, errorCallback) {
 }
 
 function insertToMagicEden() {
-  const allAssets = document.querySelectorAll('.grid-wrapper div[class="tw-h-full tw-rounded-xl tw-border-gray-4 tw-border-[1px] tw-bg-gray-100 tw-pb-1 tw-border-gray-4"]');
+  const allAssets = document.querySelectorAll('.grid-wrapper div[class="tw-relative tw-flex tw-items-center tw-bg-gray-200 tw-rounded-xl"]');
   for (let i = 0; i < allAssets.length; i++) {
     const asset = allAssets[i];
     const link = asset.querySelector('a').href;
@@ -532,7 +532,7 @@ const observer = new MutationObserver(function (mutations) {
       console.log(`URL changed to ${location.href}`);
       setTimeout(() => {
         chrome.runtime.sendMessage({ "localstorage": "isAllowed" });
-      }, 4500);
+      }, window.location.href.indexOf(ORDIO_WEB_URL) > -1 ? 4500 : 1000);
     }
   }
 });

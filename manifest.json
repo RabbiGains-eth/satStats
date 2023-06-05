@@ -1,7 +1,7 @@
 {
   "name": "satStats",
   "description": "Browser extension for displaying a satoshi's age and rarity for all Ordinal listings.",
-  "version": "0.4",
+  "version": "0.5",
   "manifest_version": 3,
   "icons": {
       "16": "/images/icon-16x16.png",

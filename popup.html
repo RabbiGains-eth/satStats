@@ -24,8 +24,34 @@
     box-shadow: 0px 5px 20px rgba(50, 50, 50, .5);
   }
 
-  a {
+  .footer a {
     color:white;
+  }
+
+  .rarityResponse {
+    width: 45%;
+    padding: 5px;
+  }
+
+  .storyResponse {
+    width: 55%;
+    padding: 5px;
+  }
+
+  .rarityContainer {
+    display: flex;
+  }
+
+  .learnMore {
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+  }
+
+  .learnNmore a {
+    color: black;
+    font-weight: bolder;
   }
 
   .toggle_container {
@@ -203,6 +229,7 @@
     background: #202030;
     cursor: pointer;
   }
+
   .tab-close:hover {
     background: #f7931a;
   }
@@ -217,6 +244,23 @@
     max-height: 100vh;
     padding: 1em;
   }
+
+  .scanButtonDiv {
+    display: flex;
+    align-content: center;
+    margin: auto;
+  }
+
+  .scanButton {
+    color: white;
+    background-color: #202030;
+  }
+
+  .scanButton:hover {
+    color: white;
+    background-color: #f7931a;
+  }
+
 
 </style>
 
@@ -243,7 +287,24 @@
           <button id="refreshLink" class="refreshButton">Refresh</button>
         </div>
       </div>
-    </div>
+      
+      <div class="tab">
+        <input type="checkbox" id="chck2">
+        <label class="tab-label" for="chck2">Address Scanner</label>
+        <div class="tab-content">
+          <div class="scanButtonDiv">
+            <textarea  placeholder="enter address" id="userAddress" class="userAddress"></textarea>
+            <button class="scanButton" id="scanButton">Scan</button>
+          </div>
+          <div class="loading" id="loading"></div>
+          <div class="rarityContainer">
+            <div class="rarityResponse" id="rarityResponse"></div>
+            <div class="storyResponse" id="storyResponse"></div>
+          </div>
+          <div class="learnMore" id="learnMore"></div>
+        </div>          
+      </div>
+  </div>
   </body>
 
   <div class="footer">
@@ -253,8 +314,10 @@
   <div class="ad" id="ad"></div>
 
   <div class="update-alert">
-        A new update has been released. Download the newest version from <a href="https://github.com/RabbiGains-eth/satStats" target="_blank">GitHub</a> or <a href="https://chrome.google.com/webstore/detail/satstats/onbiefmmngdpknejohhcpaeidieakejl" target="_blank">Chrome Store</a> 
+        A new update has been released. Download the newest version from <a href="https://github.com/RabbiGains-eth/satStats" target="_blank">GitHub</a> or <a href="https://chrome.google.com/webstore/detail/satstats/onbiefmmngdpknejohhcpaeidieakejl" target="_blank">Chrome Store</a>
   </div>
+
+  
 
 </body>
 

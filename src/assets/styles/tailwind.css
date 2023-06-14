@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.logo img {
+  display: inline !important;
+}
+
+.sating img {
+  display: inline !important;
+}
+
+a {
+    color: #f7931a;
+    text-decoration: underline;
+}

@@ -55,7 +55,7 @@ const Settings = () => {
           </div>
         </div>
         <div className="status-cta">
-          <p className="settings-version-label">satStats v1.0</p>
+          <p className="settings-version-label">satStats v1.1</p>
           <a href="https://twitter.com/satstatspro" target="_blank">@satStatsPro</a>
           <a href="https://satstats.pro" target="_blank">
             www.satstats.pro

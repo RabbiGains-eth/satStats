@@ -14,7 +14,6 @@ const Brc20Table = (props) => {
     <tr key={index}>
       <td>{item.ticker}</td>
       <td>{`${item.price} sats`}</td>
-      <td>{`${item.volume} btc`}</td>
       <td>
         {
           <FaTrashAlt
@@ -32,7 +31,6 @@ const Brc20Table = (props) => {
           <tr>
             <th>Tick</th>
             <th>Lowest Price</th>
-            <th>24h Volume</th>
             <th>Delete</th>
           </tr>
         </thead>

@@ -3,7 +3,6 @@ import { FaTrashAlt } from "react-icons/fa";
 
 const CollectionTable = (props) => {
   const handleItemDelete = (recievedIndex, name) => {
-    console.log(recievedIndex);
     const deletedCollection = props.data[recievedIndex];
 
     const filteredData = props.data.filter(items => {

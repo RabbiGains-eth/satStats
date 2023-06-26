@@ -77,7 +77,6 @@ const Collections = () => {
       if(selectedCollections.some(collection => collection.name === currentCollection.name)) {
         return;
       } else {
-        console.log("already existing")
         setSelectedCollections((prevCollections) => [
           ...prevCollections,
           collection,
@@ -95,7 +94,7 @@ const Collections = () => {
   const searchOptionsLoad = async(queryValue, callback) => {
     try {
       const response = await fetch(
-        "https://api-mainnet.magiceden.io/v2/ord/btc/popular_collections?limit=1000&window=1d"
+        "https://api-mainnet.magiceden.io/v2/ord/btc/popular_collections?limit=1000&window=7d"
       );
       const returnedData = await response.json();
       
@@ -127,14 +126,13 @@ const Collections = () => {
         const collectionName = selectedCollections[i].name;
         try {
           const response = await fetch(
-            "https://api-mainnet.magiceden.io/v2/ord/btc/popular_collections?limit=1000&window=1d"
+            "https://api-mainnet.magiceden.io/v2/ord/btc/popular_collections?limit=1000&window=7d"
           );
           const returnedData = await response.json();
 
           const filteredData = returnedData.filter((data) =>
             data.name.toLowerCase().includes(collectionName.toLowerCase())
           );
-          console.log(filteredData, "filtered data");
           const collection = formatCollection(...filteredData);
           mergedCollection.push(collection);
           setDataRefreshed(false);
@@ -148,7 +146,7 @@ const Collections = () => {
           const collectionName = storedCollectionTickers[i];
           try {
             const response = await fetch(
-              "https://api-mainnet.magiceden.io/v2/ord/btc/popular_collections?limit=1000&window=1d"
+              "https://api-mainnet.magiceden.io/v2/ord/btc/popular_collections?limit=1000&window=7d"
             );
             const returnedData = await response.json();
 

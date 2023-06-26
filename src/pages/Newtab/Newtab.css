@@ -1,0 +1,103 @@
+.date-row{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+    flex: 1;
+    width: 100%;
+    padding: 10px;
+  }
+    
+  .date-row-wrapper {
+      display: flex !important;
+      justify-content: space-between;
+      width: 100%;
+  }
+
+  .first-items, .second-items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+  .date-link .month_value{
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+    text-shadow: 2px 2px 5px black;
+  }
+  
+  .date-link .year_value{
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-shadow: 2px 2px 5px black;
+
+  }
+  
+  .block-height {
+      text-align: center;
+      color: white;
+      background-color: #f7931a;
+      padding: 3px;
+      border-radius: 5px;
+  }
+
+  .second-items {
+      text-align: center;
+  }
+
+  .satribute-image-container {
+      /* background-color: #03527E; */
+      padding-block: 5px;
+      display: flex;
+  }
+
+  .satribute-image-container .satribute-image {
+    filter: grayscale(100%);
+    width: 20px;
+    height: 18px;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+  }
+
+  .satribute-image-container .active-satribute {
+      filter: grayscale(0);
+      width: 20px;
+      height: 18px;
+      aspect-ratio: 3/2;
+      object-fit: contain;
+      
+  }
+
+  .vintage-hover:hover {
+    filter: drop-shadow(-1px -1px 3px #fbbd808e) drop-shadow(1px 1px 3px #fbbd808e);
+  }
+
+  .nakamoto-hover:hover {
+    filter: drop-shadow(-1px -1px 3px #1e608b8e) drop-shadow(1px 1px 3px #1e608b8e);
+  }
+
+  .first-txn-hover:hover {
+    filter: drop-shadow(-1px -1px 3px #ffe27a8e) drop-shadow(1px 1px 3px #ffe27a8e);
+  }
+
+  .pizza-hover:hover {
+    filter: drop-shadow(-1px -1px 3px #fcd2588e) drop-shadow(1px 1px 3px #fcd2588e);
+  }
+
+  .palindrome-hover:hover {
+    filter: drop-shadow(-1px -1px 3px #5ff5fe8e) drop-shadow(1px 1px 3px #5ff5fe8e);
+  }
+
+  .rarity-link{
+    display: inline-block;
+    text-align: center;
+    padding: 3px;
+    border-radius: 5px;
+    margin-top: 1px;
+  }
+
+  .sat_rarity_value {
+    padding: 0px !important;
+  }

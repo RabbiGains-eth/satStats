@@ -455,12 +455,29 @@ nav a.active span {
     /* margin-bottom: 80px; */
 }
 
+.satribute-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-block: 16px;
+}
+
 .options-heading {
     font-size: 20px;
     font-weight: 700;
     color: #fff;
-    text-align: center;
-    margin: 16px 0px 10px;
+    /* text-align: center;
+    margin: 16px 0px 10px; */
+}
+
+.info-icon {
+  color: #f7931a;
+  cursor: pointer;
+}
+
+.info-icon:hover {
+  color: #ed521a;
 }
 
 .select-group {
@@ -563,4 +580,209 @@ nav a.active span {
 .settings-version-label {
   padding-bottom: 20px;
   color: #fff;
+}
+
+/*CARD*/
+.card {
+    background: #0C0E11;
+    border-radius: 5px;
+}
+
+/*SATRIBUTE MODAL*/
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.modal {
+    position: fixed;
+    inset-block: 5vh 20%;
+    margin: auto;
+    z-index: 100;
+    overflow: hidden;
+    color: white;
+    padding: 10px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.x-icon {
+  cursor: pointer;
+  right: 8px;
+  top: 8px;
+  position: absolute;
+
+}
+
+.x-icon:hover {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.modal-content-one {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.modal-content-one h5, .modal-content-two h5 {
+  color: #f7931a;
+}
+
+.radamor-rarity-scale {
+  margin-top: 5px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.rrs-item {
+  max-width: 150px;
+  background-color: #272D33;
+  border-radius: 5px;
+}
+
+.rrs-item div {
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.rrs-item .uncommon-heading{
+  background-color: rgb(217 81 237); 
+}
+
+.rrs-item .rare-heading {
+  background-color: rgb(123 98 249);
+}
+
+.rrs-item .epic-heading {
+  background-color: rgb(72 229 72);
+}
+
+.rrs-item p {
+  text-align: center;
+  color: rgb(156 163 175) !important;
+  margin-top: 10px !important;
+  font-size: 12px;
+  max-width: 100px;
+}
+
+.rarity-text-bold {
+  font-weight: bold;
+}
+
+.uncommon-text .rarity-text-bold {
+  color: rgb(217 81 237)
+}
+
+.rare-text .rarity-text-bold {
+  color: rgb(123 98 249);
+}
+
+.epic-text .rarity-text-bold {
+  color: rgb(72 229 72);
+}
+
+
+.modal-content-two {
+  margin-top: 30px;
+}
+
+.modal-content-two h5  {
+  text-align: center;
+}
+
+.satribute-icon-container {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.satribute-icon-container > div {
+  position: relative;
+}
+
+.satribute-icon-container img {
+   cursor: pointer;
+}
+
+.icon-info {
+  position: absolute;
+  background-color: #272D33;
+  color: rgb(156 163 175);
+  font-size: 12px;
+  padding: 2px;
+  max-width: 160px;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.icon-info div {
+  color: #f7931a;
+}
+
+.icon-info p {
+  max-width: 150px;
+  color: rgb(156 163 175) !important;
+}
+
+.first-icon-info, .nakamoto-icon-info, .palindrome-icon-info , .pizza-icon-info,.vintage-icon-info {
+  display: none;
+  margin-top: 5px;
+}
+
+.first-icon-container:hover .first-icon-info {
+  display: block;
+  inset: 40px auto auto -5px;
+}
+
+.first-icon-container:hover .first-icon {
+  filter: drop-shadow(-1px -1px 3px #ffe27a8e) drop-shadow(1px 1px 3px #ffe27a8e);
+}
+
+.nakamoto-icon-container:hover .nakamoto-icon-info {
+  display: block;
+  inset: 40px auto auto -60px;
+}
+
+.nakamoto-icon-container:hover .nakamoto-icon {
+  filter: drop-shadow(-1px -1px 3px #1e608b8e) drop-shadow(1px 1px 3px #1e608b8e);
+}
+
+.palindrome-icon-container:hover .palindrome-icon-info {
+  display: block;
+  inset: 40px auto auto -60px;
+}
+
+.palindrome-icon-container:hover .palindrome-icon {
+  filter: drop-shadow(-1px -1px 3px #5ff5fe8e) drop-shadow(1px 1px 3px #5ff5fe8e);
+}
+
+.pizza-icon-container:hover .pizza-icon-info {
+  display: block;
+  inset: 40px auto auto -70px;
+}
+
+.pizza-icon-container:hover .pizza-icon {
+  filter: drop-shadow(-1px -1px 3px #fcd2588e) drop-shadow(1px 1px 3px #fcd2588e);
+}
+
+.vintage-icon-container:hover .vintage-icon-info {
+  display: block;
+  inset: 40px auto auto -120px;
+}
+
+.vintage-icon-container:hover .vintage-icon {
+  filter: drop-shadow(-1px -1px 3px #fbbd808e) drop-shadow(1px 1px 3px #fbbd808e);
 }

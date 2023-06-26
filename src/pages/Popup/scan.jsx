@@ -28,7 +28,6 @@ const Scan = () => {
       const apiUrl = `https://gw.sating.io/api/account/stats/${userAddress}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
-      console.log(data)
       setRarityData(data);
       if(data) {
         imageRef.current.scrollIntoView({ behavior: 'smooth' });

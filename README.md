@@ -16,6 +16,10 @@
 
 
 ## Updates
+-- v1.2 - June 26, 2023
+  - Added support for additional satributes
+
+
 -- v1.1 - June 19, 2023
   - Fix for address scanner
  
